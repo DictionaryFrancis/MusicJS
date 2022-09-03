@@ -15,19 +15,20 @@
 
 // clap.onclick = playSoundclap;
 
-const teclas = document.querySelectorAll(".tecla")
-console.log(teclas[2])
-
-
-function playSoundPom() {
-    document.querySelector("#som_tecla_pom").play();
+function playSound(idElementAudio) {
+    document.querySelector(idElementAudio).play();
 }
 
-let cont = 0;
+const teclas = document.querySelectorAll(".tecla")
 
-while(cont < teclas.length){
-    teclas[cont].onclick = playSoundPom;
 
-    cont += 1;
+for(let cont = 0; cont < teclas.length; cont ++){
+
+    const teclaPressed = teclas[cont]
+    const instrument =  teclaPressed.classList[1];
+    const idAudio = `#som_${instrument}`
+    teclaPressed.onclick = function () {
+        playSound(idAudio);    
+    }  
 
 }
